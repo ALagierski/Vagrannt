@@ -1,6 +1,5 @@
 - name: Init Playbook
-  hosts: local
-  connection: local
+  hosts: all
   become: true
   vars:
     docker_users:
