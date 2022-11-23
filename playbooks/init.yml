@@ -1,0 +1,11 @@
+- name: Init Playbook
+  hosts: all
+  become: true
+
+  roles:
+    - user
+    - packages
+    - geerlingguy.docker
+    - christiangda.awscli
+    - christiangda.awscli_configure
+    - diodonfrost.terraform
