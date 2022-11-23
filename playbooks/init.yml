@@ -1,5 +1,6 @@
 - name: Init Playbook
-  hosts: all
+  hosts: local
+  connection: local
   become: true
 
   roles:
