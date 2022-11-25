@@ -24,6 +24,8 @@ Vagrant.configure("2") do |config|
         ansible.playbook = "playbooks/init.yml"
     end
 
+    config.vm.provision "shell", path: "scripts/init.sh"
+
     if VAGRANT_CMD == "ssh"
         config.ssh.username = "panda"
     end
