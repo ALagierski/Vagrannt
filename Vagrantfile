@@ -1,3 +1,5 @@
+VAGRANT_CMD = ARGV[0]
+
 Vagrant.configure("2") do |config|
     config.vm.box = "bento/ubuntu-20.04"
     
@@ -20,6 +22,10 @@ Vagrant.configure("2") do |config|
         ansible.galaxy_roles_path = "/etc/ansible/roles"
         ansible.galaxy_command = "sudo ansible-galaxy install --role-file=%{role_file} --roles-path=%{roles_path}"
         ansible.playbook = "playbooks/init.yml"
+    end
+
+    if VAGRANT_CMD == "ssh"
+        config.ssh.username = "panda"
     end
     
 end
