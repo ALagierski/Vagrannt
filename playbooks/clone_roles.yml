@@ -1,0 +1,20 @@
+---
+- name: Clone Roles
+  hosts: all
+  become: true
+  vars:
+    git_repository: "https://github.com/ALagierski/Ansible_roles.git"
+    git_branch: "main"
+  
+  tasks:
+    - name: Create roles directory if it does not exist
+      ansible.builtin.file:
+        path: "/etc/ansible/roles"
+        mode: 0755
+        state: directory
+    
+    - name: Git checkout
+      ansible.builtin.git:
+        repo: "{{ git_repository }}"
+        dest: "/etc/ansible/roles"
+        version: "{{ git_branch }}"
