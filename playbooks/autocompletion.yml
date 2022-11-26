@@ -39,12 +39,12 @@
     - name: Check if bashrc contains git autocompletion
       ansible.builtin.command: 'grep "git-completion" /home/panda/.bashrc'
       register: output
-      changed_when: output.msg.lower() == 'changed'
-      ignore_errors: true
+      changed_when: false
+      failed_when: output.rc == 2
 
     - name: Append git-completion instructions into .bashrc
       ansible.builtin.blockinfile:
-        path: "/home/panda/"
+        path: "/home/panda/.bashrc"
         marker: "### ANSIBLE BLOCK ###"
         block: |
           if [ -f ~/.git-completion.bash ]; then
