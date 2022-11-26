@@ -1,7 +1,7 @@
 #!/bin/bash
 
 sudo apt install bash-completion &>/dev/null
-curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o ~/.git-completion.bash &>/dev/null
+curl https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o /home/panda/.git-completion.bash &>/dev/null
 
 
 grep "git-completion" /home/panda/.bashrc || cat << EOF >> /home/panda/.bashrc
