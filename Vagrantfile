@@ -24,7 +24,11 @@ Vagrant.configure("2") do |config|
         ansible.playbook = "playbooks/init.yml"
     end
 
-    config.vm.provision "shell", path: "scripts/init.sh"
+    # config.vm.provision "shell", path: "scripts/init.sh" # Disable script init
+
+    config.vm.provision "ansible_local" do |ansible|
+        ansible.playbook = "playbooks/autocompletion.yml"
+    end
 
     if VAGRANT_CMD == "ssh"
         config.ssh.username = "panda"
