@@ -3,12 +3,12 @@
   become: true
 
   tasks:
-    - name: Check if ansible scripts are present
-      ansible.builtin.find:
-        paths: "/etc/bash_completion.d"
-        patterns:
-          - ansible-*
-      register: ls
+    # - name: Check if ansible scripts are present
+    #   ansible.builtin.find:
+    #     paths: "/etc/bash_completion.d"
+    #     patterns:
+    #       - ansible-*
+    #   register: ls
 
     - name: Download ansible autocompletion scripts
       ansible.builtin.get_url:
@@ -22,19 +22,19 @@
         - ansible-playbook-completion
         - ansible-vault-completion
         - ansible-pull-completion
-      when: ls != 6
+      # when: ls != 6
 
-    - name: Check if git autocompletion exists
-      ansible.builtin.stat:
-        path: "/home/panda/.git-autocompletion.bash"
-      register: git_autocompletion_script
+    # - name: Check if git autocompletion exists
+    #   ansible.builtin.stat:
+    #     path: "/home/panda/.git-autocompletion.bash"
+      # register: git_autocompletion_script
 
     - name: Download git autocompletion script
       ansible.builtin.get_url:
         url: https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
         dest: "/home/panda/.git-completion.bash"
         mode: 0755
-      when: not git_autocompletion_script.stat.exists
+      # when: not git_autocompletion_script.stat.exists
 
     - name: Check if bashrc contains git autocompletion
       ansible.builtin.command: 'grep "git-completion" /home/panda/.bashrc'
