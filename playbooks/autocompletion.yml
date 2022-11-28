@@ -29,25 +29,25 @@
     #     path: "/home/panda/.git-autocompletion.bash"
       # register: git_autocompletion_script
 
-    - name: Download git autocompletion script
-      ansible.builtin.get_url:
-        url: https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
-        dest: "/home/panda/.git-completion.bash"
-        mode: 0755
+    # - name: Download git autocompletion script
+    #   ansible.builtin.get_url:
+    #     url: https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
+    #     dest: "/home/panda/.git-completion.bash"
+    #     mode: 0755
       # when: not git_autocompletion_script.stat.exists
 
-    - name: Check if bashrc contains git autocompletion
-      ansible.builtin.command: 'grep "git-completion" /home/panda/.bashrc'
-      register: output
-      changed_when: false
-      failed_when: output.rc == 2
+    # - name: Check if bashrc contains git autocompletion
+    #   ansible.builtin.command: 'grep "git-completion" /home/panda/.bashrc'
+    #   register: output
+    #   changed_when: false
+    #   failed_when: output.rc == 2
 
-    - name: Append git-completion instructions into .bashrc
-      ansible.builtin.blockinfile:
-        path: "/home/panda/.bashrc"
-        marker: "### ANSIBLE BLOCK ###"
-        block: |
-          if [ -f ~/.git-completion.bash ]; then
-            . ~/.git-completion.bash
-          fi
-      when: output.rc != 0
+    # - name: Append git-completion instructions into .bashrc
+    #   ansible.builtin.blockinfile:
+    #     path: "/home/panda/.bashrc"
+    #     marker: "### ANSIBLE BLOCK ###"
+    #     block: |
+    #       if [ -f ~/.git-completion.bash ]; then
+    #         . ~/.git-completion.bash
+    #       fi
+    #   when: output.rc != 0
