@@ -30,6 +30,10 @@ Vagrant.configure("2") do |config|
         ansible.playbook = "playbooks/autocompletion.yml"
     end
 
+    config.vm.provision "ansible_local" do |ansible|
+        ansible.playbook = "playbooks/keygen.yml"
+    end
+
     if VAGRANT_CMD == "ssh"
         config.ssh.username = "panda"
     end

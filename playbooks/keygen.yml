@@ -1,0 +1,14 @@
+- name: Generate key pairs
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Generate key pair
+      community.crypto.openssh_keypair:
+        path: /home/panda/.ssh/id_rsa
+
+    - name: Set SSH_PRIVATE_KEY env variable
+      ansible.builtin.lineinfile:
+        path: /home/panda/.bashrc
+        regexp: "^export SSH_PRIVATE_KEY="
+        line: 'export SSH_PRIVATE_KEY="$(cat /home/panda/.ssh/id_rsa)"'
