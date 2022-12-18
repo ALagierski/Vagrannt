@@ -12,3 +12,9 @@
         path: /home/panda/.bashrc
         regexp: "^export SSH_PRIVATE_KEY="
         line: 'export SSH_PRIVATE_KEY="$(cat /home/panda/.ssh/id_rsa)"'
+    
+    - name: Set SSH_PUBLIC_KEY env variable
+      ansible.builtin.lineinfile:
+        path: /home/panda/.bashrc
+        regexp: "^export SSH_PUBLIC_KEY="
+        line: 'export SSH_PUBLIC_KEY="$(cat /home/panda/.ssh/id_rsa)"'
