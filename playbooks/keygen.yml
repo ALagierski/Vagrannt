@@ -6,6 +6,8 @@
     - name: Generate key pair
       community.crypto.openssh_keypair:
         path: /home/panda/.ssh/id_rsa
+        owner: panda
+        group: users
 
     - name: Set SSH_PRIVATE_KEY env variable
       ansible.builtin.lineinfile:
