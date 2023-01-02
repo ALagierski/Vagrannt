@@ -34,6 +34,14 @@ Vagrant.configure("2") do |config|
         ansible.playbook = "playbooks/keygen.yml"
     end
 
+    config.vm.provision "ansible_local" do |ansible|
+       ansible.playbook = "playbooks/infrastructure.yml"
+       ansible.extra_vars = {
+        git_repository: "https://github.com/ALagierski/Infrastructure.git",
+        git_branch: "main"
+       } 
+    end
+
     if VAGRANT_CMD == "ssh"
         config.ssh.username = "panda"
     end
